@@ -30,8 +30,7 @@ func TestGetPathSizeFileHumanInBytes(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", "10.00B", path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "10.00B", result)
 }
 
 func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
@@ -42,8 +41,7 @@ func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", "42.14KB", path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "42.14KB", result)
 }
 
 func TestGetPathSizeDirAll(t *testing.T) {

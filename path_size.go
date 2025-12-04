@@ -72,7 +72,7 @@ func getDirSize(path string, all bool, recursive bool) (int, error) {
 func Format(size int, path string, human bool) string {
 	if human {
 		humanSize := bytesize.New(float64(size))
-		return fmt.Sprintf("%s\t%s", humanSize, path)
+		return humanSize.String()
 	}
 
 	return fmt.Sprintf("%s\t%s", strconv.Itoa(size), path)
