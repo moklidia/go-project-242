@@ -19,10 +19,7 @@ func TestGetPathSizeFile(t *testing.T) {
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(10), path)
-	require.Equal(t, result, expectedResult)
-	if result != expectedResult {
-		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
-	}
+	require.Equal(t, expectedResult, result)
 }
 
 func TestGetPathSizeFileHumanInBytes(t *testing.T) {
@@ -34,10 +31,7 @@ func TestGetPathSizeFileHumanInBytes(t *testing.T) {
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", "10.00B", path)
-	require.Equal(t, result, expectedResult)
-	if result != expectedResult {
-		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
-	}
+	require.Equal(t, expectedResult, result)
 }
 
 func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
@@ -49,10 +43,7 @@ func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", "42.14KB", path)
-	require.Equal(t, result, expectedResult)
-	if result != expectedResult {
-		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
-	}
+	require.Equal(t, expectedResult, result)
 }
 
 func TestGetPathSizeDirAll(t *testing.T) {
@@ -65,10 +56,7 @@ func TestGetPathSizeDirAll(t *testing.T) {
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(46), path)
-	require.Equal(t, result, expectedResult)
-	if result != expectedResult {
-		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
-	}
+	require.Equal(t, expectedResult, result)
 }
 
 func TestGetPathSizeDirWithoutHidden(t *testing.T) {
@@ -81,8 +69,17 @@ func TestGetPathSizeDirWithoutHidden(t *testing.T) {
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(66), path)
-	require.Equal(t, result, expectedResult)
-	if result != expectedResult {
-		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
+	require.Equal(t, expectedResult, result)
+}
+
+func TestGetPathSizeDirRecursive(t *testing.T) {
+	path := filepath.Join("../testdata/recursive")
+	recursive := true
+	result, err := pathsize.GetPathSize(path, recursive, false, false)
+	if err != nil {
+		t.Errorf("Error: %s", err.Error())
 	}
+
+	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(84), path)
+	require.Equal(t, expectedResult, result)
 }
