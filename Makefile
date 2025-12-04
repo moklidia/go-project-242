@@ -9,3 +9,6 @@ lint:
 
 dev:
 	go run ./cmd/hexlet-path-size $(path)
+
+test:
+	go test -v ./tests
