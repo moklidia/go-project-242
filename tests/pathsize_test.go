@@ -83,3 +83,15 @@ func TestGetPathSizeDirRecursive(t *testing.T) {
 	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(84), path)
 	require.Equal(t, expectedResult, result)
 }
+
+func TestGetPathSizeDirNonRecursive(t *testing.T) {
+	path := filepath.Join("../testdata/recursive")
+	recursive := false
+	result, err := pathsize.GetPathSize(path, recursive, false, false)
+	if err != nil {
+		t.Errorf("Error: %s", err.Error())
+	}
+
+	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(15), path)
+	require.Equal(t, expectedResult, result)
+}
