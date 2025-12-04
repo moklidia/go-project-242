@@ -4,6 +4,9 @@ build:
 run:
 	./bin/hexlet-path-size $(path)
 
+run-human:
+	./bin/hexlet-path-size --human $(path)
+
 lint:
 	golangci-lint run
 

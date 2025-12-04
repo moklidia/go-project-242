@@ -12,7 +12,8 @@ import (
 
 func TestGetPathSizeFile(t *testing.T) {
 	path := filepath.Join("../testdata/testfile.txt")
-	result, err := pathsize.GetPathSize(path, false, true, false)
+	human := false
+	result, err := pathsize.GetPathSize(path, false, human, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -24,9 +25,40 @@ func TestGetPathSizeFile(t *testing.T) {
 	}
 }
 
+func TestGetPathSizeFileHumanInBytes(t *testing.T) {
+	path := filepath.Join("../testdata/testfile.txt")
+	human := true
+	result, err := pathsize.GetPathSize(path, false, human, false)
+	if err != nil {
+		t.Errorf("Error: %s", err.Error())
+	}
+
+	expectedResult := fmt.Sprintf("%s\t%s", "10.00B", path)
+	require.Equal(t, result, expectedResult)
+	if result != expectedResult {
+		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
+	}
+}
+
+func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
+	path := filepath.Join("../testdata/image.jpg")
+	human := true
+	result, err := pathsize.GetPathSize(path, false, human, false)
+	if err != nil {
+		t.Errorf("Error: %s", err.Error())
+	}
+
+	expectedResult := fmt.Sprintf("%s\t%s", "42.14KB", path)
+	require.Equal(t, result, expectedResult)
+	if result != expectedResult {
+		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
+	}
+}
+
 func TestGetPathSizeDir(t *testing.T) {
 	path := filepath.Join("../testdata/testdir")
-	result, err := pathsize.GetPathSize(path, false, true, false)
+	human := false
+	result, err := pathsize.GetPathSize(path, false, human, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}

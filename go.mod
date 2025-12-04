@@ -4,6 +4,7 @@ go 1.25.4
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/inhies/go-bytesize v0.0.0-20220417184213-4913239db9cf // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.11.1 // indirect
 	github.com/urfave/cli/v3 v3.6.1 // indirect
