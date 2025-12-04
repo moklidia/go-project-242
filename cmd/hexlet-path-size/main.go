@@ -16,9 +16,16 @@ func main() {
 		Usage: "print size of a file or directory",
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
-				Name:  "human",
-				Value: false,
-				Usage: "human-readable sizes (auto-select unit)",
+				Name:    "human",
+				Aliases: []string{"H"},
+				Value:   false,
+				Usage:   "human-readable sizes (auto-select unit)",
+			},
+			&cli.BoolFlag{
+				Name:    "all",
+				Aliases: []string{"a"},
+				Value:   false,
+				Usage:   "include hidden files and directories",
 			},
 		},
 		Action: func(_ context.Context, cmd *cli.Command) error {
@@ -27,7 +34,8 @@ func main() {
 				path = cmd.Args().Get(0)
 			}
 			human := cmd.Bool("human")
-			size, err := pathsize.GetPathSize(path, false, human, false)
+			all := cmd.Bool("all")
+			size, err := pathsize.GetPathSize(path, false, human, all)
 			if err != nil {
 				fmt.Println(err.Error())
 			}

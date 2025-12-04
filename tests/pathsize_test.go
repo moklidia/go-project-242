@@ -55,15 +55,32 @@ func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
 	}
 }
 
-func TestGetPathSizeDir(t *testing.T) {
+func TestGetPathSizeDirAll(t *testing.T) {
 	path := filepath.Join("../testdata/testdir")
 	human := false
-	result, err := pathsize.GetPathSize(path, false, human, false)
+	all := false
+	result, err := pathsize.GetPathSize(path, false, human, all)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
 
 	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(46), path)
+	require.Equal(t, result, expectedResult)
+	if result != expectedResult {
+		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
+	}
+}
+
+func TestGetPathSizeDirWithoutHidden(t *testing.T) {
+	path := filepath.Join("../testdata/testdir")
+	human := false
+	all := true
+	result, err := pathsize.GetPathSize(path, false, human, all)
+	if err != nil {
+		t.Errorf("Error: %s", err.Error())
+	}
+
+	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(66), path)
 	require.Equal(t, result, expectedResult)
 	if result != expectedResult {
 		t.Errorf("Actual result %s does not match the expected result %s", result, expectedResult)
