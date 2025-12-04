@@ -1,7 +1,7 @@
 package code
 
 import (
-	"code/pathsize"
+	"code"
 	"fmt"
 	"path/filepath"
 	"strconv"
@@ -13,7 +13,7 @@ import (
 func TestGetPathSizeFile(t *testing.T) {
 	path := filepath.Join("../testdata/testfile.txt")
 	human := false
-	result, err := pathsize.GetPathSize(path, false, human, false)
+	result, err := code.GetPathSize(path, false, human, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -25,7 +25,7 @@ func TestGetPathSizeFile(t *testing.T) {
 func TestGetPathSizeFileHumanInBytes(t *testing.T) {
 	path := filepath.Join("../testdata/testfile.txt")
 	human := true
-	result, err := pathsize.GetPathSize(path, false, human, false)
+	result, err := code.GetPathSize(path, false, human, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -37,7 +37,7 @@ func TestGetPathSizeFileHumanInBytes(t *testing.T) {
 func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
 	path := filepath.Join("../testdata/image.jpg")
 	human := true
-	result, err := pathsize.GetPathSize(path, false, human, false)
+	result, err := code.GetPathSize(path, false, human, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -50,7 +50,7 @@ func TestGetPathSizeDirAll(t *testing.T) {
 	path := filepath.Join("../testdata/testdir")
 	human := false
 	all := false
-	result, err := pathsize.GetPathSize(path, false, human, all)
+	result, err := code.GetPathSize(path, false, human, all)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -63,7 +63,7 @@ func TestGetPathSizeDirWithoutHidden(t *testing.T) {
 	path := filepath.Join("../testdata/testdir")
 	human := false
 	all := true
-	result, err := pathsize.GetPathSize(path, false, human, all)
+	result, err := code.GetPathSize(path, false, human, all)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -75,7 +75,7 @@ func TestGetPathSizeDirWithoutHidden(t *testing.T) {
 func TestGetPathSizeDirRecursive(t *testing.T) {
 	path := filepath.Join("../testdata/recursive")
 	recursive := true
-	result, err := pathsize.GetPathSize(path, recursive, false, false)
+	result, err := code.GetPathSize(path, recursive, false, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}
@@ -87,7 +87,7 @@ func TestGetPathSizeDirRecursive(t *testing.T) {
 func TestGetPathSizeDirNonRecursive(t *testing.T) {
 	path := filepath.Join("../testdata/recursive")
 	recursive := false
-	result, err := pathsize.GetPathSize(path, recursive, false, false)
+	result, err := code.GetPathSize(path, recursive, false, false)
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())
 	}

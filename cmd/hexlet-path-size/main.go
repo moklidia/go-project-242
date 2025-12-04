@@ -1,7 +1,7 @@
 package main
 
 import (
-	"code/pathsize"
+	"code"
 	"context"
 	"fmt"
 	"log"
@@ -42,7 +42,7 @@ func main() {
 			human := cmd.Bool("human")
 			all := cmd.Bool("all")
 			recursive := cmd.Bool("recursive")
-			size, err := pathsize.GetPathSize(path, recursive, human, all)
+			size, err := code.GetPathSize(path, recursive, human, all)
 			if err != nil {
 				fmt.Println(err.Error())
 			}
