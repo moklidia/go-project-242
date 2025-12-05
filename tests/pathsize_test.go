@@ -2,9 +2,7 @@ package code
 
 import (
 	"code"
-	"fmt"
 	"path/filepath"
-	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -18,8 +16,7 @@ func TestGetPathSizeFile(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(10), path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "10B", result)
 }
 
 func TestGetPathSizeFileHumanInBytes(t *testing.T) {
@@ -53,8 +50,7 @@ func TestGetPathSizeDirAll(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(46), path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "46B", result)
 }
 
 func TestGetPathSizeDirWithoutHidden(t *testing.T) {
@@ -66,8 +62,7 @@ func TestGetPathSizeDirWithoutHidden(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(66), path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "66B", result)
 }
 
 func TestGetPathSizeDirRecursive(t *testing.T) {
@@ -78,8 +73,7 @@ func TestGetPathSizeDirRecursive(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(84), path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "84B", result)
 }
 
 func TestGetPathSizeDirNonRecursive(t *testing.T) {
@@ -90,6 +84,5 @@ func TestGetPathSizeDirNonRecursive(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	expectedResult := fmt.Sprintf("%s\t%s", strconv.Itoa(15), path)
-	require.Equal(t, expectedResult, result)
+	require.Equal(t, "15B", result)
 }

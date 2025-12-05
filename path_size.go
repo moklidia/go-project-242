@@ -51,7 +51,7 @@ func getDirSize(path string, all bool, recursive bool) (int, error) {
 		}
 		if file.IsDir() {
 			if recursive {
-				nestedPath := filepath.Join(path, "/", file.Name())
+				nestedPath := filepath.Join(path, file.Name())
 				dirSize, err := getDirSize(nestedPath, all, recursive)
 				if err != nil {
 					return 0, errors.New("couldn't get file info")
@@ -79,5 +79,5 @@ func Format(size int, path string, human bool) string {
 		return str
 	}
 
-	return fmt.Sprintf("%s\t%s", strconv.Itoa(size), path)
+	return fmt.Sprintf("%sB", strconv.Itoa(size))
 }
