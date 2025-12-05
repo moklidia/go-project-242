@@ -2,13 +2,9 @@ package code
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
-
-	"github.com/inhies/go-bytesize"
 )
 
 func GetPathSize(path string, recursive, human, all bool) (string, error) {
@@ -67,17 +63,4 @@ func getDirSize(path string, all bool, recursive bool) (int, error) {
 		}
 	}
 	return size, nil
-}
-
-func Format(size int, path string, human bool) string {
-	if human {
-		humanSize := bytesize.New(float64(size))
-		str := humanSize.String()
-
-		str = strings.Replace(str, ".00", ".0", 1)
-
-		return str
-	}
-
-	return fmt.Sprintf("%sB", strconv.Itoa(size))
 }

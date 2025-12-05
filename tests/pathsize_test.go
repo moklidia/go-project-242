@@ -27,7 +27,7 @@ func TestGetPathSizeFileHumanInBytes(t *testing.T) {
 		t.Errorf("Error: %s", err.Error())
 	}
 
-	require.Equal(t, "10.0B", result)
+	require.Equal(t, "10B", result)
 }
 
 func TestGetPathSizeFileHumanInKiloBytes(t *testing.T) {
