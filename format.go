@@ -32,8 +32,14 @@ func normalizeHumanByteSize(humanSize bytesize.ByteSize) string {
 	num := str[:divider]
 	unit := str[divider:]
 
-	num = strings.TrimRight(num, "0")
-	num = strings.TrimRight(num, ".")
+	if unit == "B" {
+		num = strings.TrimRight(num, "0")
+		num = strings.TrimRight(num, ".")
+	} else {
+		if strings.Contains(num, ".") && strings.HasSuffix(num, "00") {
+			num = strings.TrimSuffix(num, "0")
+		}
+	}
 
 	return fmt.Sprintf("%s%s", num, unit)
 }
